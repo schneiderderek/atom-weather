@@ -1,7 +1,7 @@
 {
   "name": "weather",
   "main": "./lib/weather",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Atom package that displays weather info in status bar",
   "keywords": [
     "weather"
@@ -11,8 +11,7 @@
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "consumedServices": {
     "status-bar": {
       "versions": {
