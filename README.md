@@ -1,4 +1,4 @@
-# Weather package
+# Weather
 
 Displays the temperature in the status bar of Atom.
 
