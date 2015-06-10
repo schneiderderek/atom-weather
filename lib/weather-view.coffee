@@ -12,6 +12,8 @@ class WeatherView extends HTMLElement
     @fetchWeather()
     setInterval(@fetchWeather.bind(@), @updateInterval())
 
+    atom.config.onDidChange 'weather.zipcode', @fetchWeather.bind(@)
+
   isVisible: ->
     @classList.contains('hidden')
 
