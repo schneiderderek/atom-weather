@@ -36,7 +36,7 @@ class WeatherView extends HTMLElement
     'http://api.openweathermap.org/data/2.5/weather?zip=' + @zipcode() + ',us&units=imperial'
 
   showWeather: (weather) ->
-    @content.innerText = weather.main.temp + 'F'
+    @content.innerText = Math.round(weather.main.temp) + 'F'
 
   fetchWeather: ->
     console.info('Fetching weather')
