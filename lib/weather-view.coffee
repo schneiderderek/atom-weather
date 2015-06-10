@@ -13,6 +13,7 @@ class WeatherView extends HTMLElement
     setInterval(@fetchWeather.bind(@), @updateInterval())
 
     atom.config.onDidChange 'weather.zipcode', @fetchWeather.bind(@)
+    atom.config.onDidChange 'weather.showIcon', @fetchWeather.bind(@)
 
   isVisible: ->
     @classList.contains('hidden')
@@ -35,11 +36,22 @@ class WeatherView extends HTMLElement
   zipcode: ->
     atom.config.get('weather.zipcode')
 
+  iconUrl: (iconName) ->
+    'http://openweathermap.org/img/w/' + iconName + '.png'
+
+  showIcon: (iconName) ->
+    return unless atom.config.get 'weather.showIcon'
+
+    img = document.createElement('img')
+    img.setAttribute('src', @iconUrl(iconName))
+    @content.appendChild(img)
+
   weatherUrl: ->
     'http://api.openweathermap.org/data/2.5/weather?zip=' + @zipcode() + ',us&units=imperial'
 
   showWeather: (weather) ->
     @content.innerText = Math.round(weather.main.temp) + 'F'
+    @showIcon(weather.weather[0].icon)
 
   fetchWeather: ->
     console.info('Fetching weather')

@@ -2,13 +2,16 @@
 
 Displays the temperature in the status bar of Atom.
 
-![Screenshot](http://i.imgur.com/6PRbC4b.png)
+![Screenshot](http://i.imgur.com/9hxsmDq.png)
 
 More features coming soon, feel free to put in requests or contribute!
 
 ## Configuration
 
 Configuration for weather can be found by going to: settings > packages > weather and click on settings.
+
+### Show Icon
+By default weather will show an icon associated with the current weather. To change this, check/uncheck the option.
 
 ### Zipcode
 By default weather uses the zipcode 43201. Enter in your zipcode into the text box and you're all set!

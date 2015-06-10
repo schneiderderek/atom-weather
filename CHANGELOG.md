@@ -1,3 +1,6 @@
+## 0.6.0
+* Add show icon feature
+
 ## 0.5.1
 * Fix bugs when API call was unsuccessful
 

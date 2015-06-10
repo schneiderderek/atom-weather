@@ -11,6 +11,9 @@ module.exports = Weather =
     updateInterval:
       type: 'integer'
       default: 15
+    showIcon:
+      type: 'boolean'
+      default: true
 
   consumeStatusBar: (statusBar) ->
     @statusBarTile = statusBar.addRightTile(item: @weatherView, priority: 100)
