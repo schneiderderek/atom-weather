@@ -1,3 +1,6 @@
+## 0.5.1
+* Fix bugs when API call was unsuccessful
+
 ## 0.5.0
 * Round the temperature displayed
 
