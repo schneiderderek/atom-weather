@@ -10,6 +10,15 @@ class WeatherView extends HTMLElement
     @showLoading()
     @fetchWeather()
 
+  isVisible: ->
+    @classList.contains('hidden')
+
+  show: ->
+    @classList.add('hidden')
+
+  hide: ->
+    @classList.remove('hidden')
+
   showLoading: ->
     @content.innerText = 'Getting weather for: ' + @zipcode()
 

@@ -4,7 +4,12 @@
     'label': 'Packages'
     'submenu': [
       'label': 'Weather'
-      'submenu': []
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'weather:toggle'
+        }
+      ]
     ]
   }
 ]

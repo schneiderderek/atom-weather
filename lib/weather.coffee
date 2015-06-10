@@ -19,8 +19,15 @@ module.exports = Weather =
     @weatherView.initialize()
 
     @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add 'atom-workspace', 'weather:toggle': => @toggle()
 
   deactivate: ->
     @subscriptions.dispose()
     @statusBarTile?.destroy()
     @statusBarTile = null
+
+  toggle: ->
+    if @weatherView.isVisible()
+      @weatherView.hide()
+    else
+      @weatherView.show()
