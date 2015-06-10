@@ -10,6 +10,9 @@ More features coming soon, feel free to put in requests or contribute!
 
 Configuration for weather can be found by going to: settings > packages > weather and click on settings.
 
+### Show Humidity
+By default weather will show the current humidity. To change this, check/uncheck the option.
+
 ### Show Icon
 By default weather will show an icon associated with the current weather. To change this, check/uncheck the option.
 
