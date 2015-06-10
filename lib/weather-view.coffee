@@ -29,6 +29,9 @@ class WeatherView extends HTMLElement
   showLoading: ->
     @content.innerText = 'Getting weather for: ' + @zipcode()
 
+  showError: (errorText) ->
+    @content.innerText = 'Cannot load weather: ' + errorText
+
   zipcode: ->
     atom.config.get('weather.zipcode')
 
@@ -46,8 +49,15 @@ class WeatherView extends HTMLElement
     view = @
 
     request.onreadystatechange = ->
-      if (request.readyState == 4 && request.status == 200)
-        view.showWeather JSON.parse(request.responseText)
+      if request.readyState == 4 && request.status == 200
+        response = JSON.parse(request.responseText)
+
+        # The openweathermap API seems to always return a 200 HTTP status.
+        # Check the response to make sure it was actually successful.
+        if response.cod == 200
+          view.showWeather response
+        else
+          view.showError response.message
 
 
 module.exports = document.registerElement('status-bar-weather',
