@@ -6,8 +6,11 @@ module.exports = Weather =
   subscriptions: null
   config:
     zipcode:
-      type: 'string'
-      default: '43201'
+      type: 'integer'
+      default: 43201
+    updateInterval:
+      type: 'integer'
+      default: 15
 
   consumeStatusBar: (statusBar) ->
     @statusBarTile = statusBar.addRightTile(item: @weatherView, priority: 100)

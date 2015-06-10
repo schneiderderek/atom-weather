@@ -8,7 +8,9 @@ class WeatherView extends HTMLElement
     @appendChild(@content)
 
     @showLoading()
+
     @fetchWeather()
+    setInterval(@fetchWeather.bind(@), @updateInterval())
 
   isVisible: ->
     @classList.contains('hidden')
@@ -18,6 +20,9 @@ class WeatherView extends HTMLElement
 
   hide: ->
     @classList.remove('hidden')
+
+  updateInterval: ->
+    atom.config.get('weather.updateInterval') * 60 * 1000
 
   showLoading: ->
     @content.innerText = 'Getting weather for: ' + @zipcode()
