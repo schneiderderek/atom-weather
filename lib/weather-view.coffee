@@ -1,4 +1,5 @@
 class WeatherView extends HTMLElement
+  configRerenderTriggers: ['zipcode', 'showIcon', 'showHumidity']
   initialize: ->
     @classList.add('weather', 'inline-block')
 
@@ -12,8 +13,8 @@ class WeatherView extends HTMLElement
     @fetchWeather()
     setInterval(@fetchWeather.bind(@), @updateInterval())
 
-    atom.config.onDidChange 'weather.zipcode', @fetchWeather.bind(@)
-    atom.config.onDidChange 'weather.showIcon', @fetchWeather.bind(@)
+    for optionName in @configRerenderTriggers
+      atom.config.onDidChange "weather.#{optionName}", @fetchWeather.bind(@)
 
   isVisible: ->
     @classList.contains('hidden')
@@ -28,16 +29,16 @@ class WeatherView extends HTMLElement
     atom.config.get('weather.updateInterval') * 60 * 1000
 
   showLoading: ->
-    @content.innerText = 'Getting weather for: ' + @zipcode()
+    @content.innerText = "Getting weather for: #{@zipcode()}"
 
   showError: (errorText) ->
-    @content.innerText = 'Cannot load weather: ' + errorText
+    @content.innerText = "Cannot load weather: #{errorText}"
 
   zipcode: ->
     atom.config.get('weather.zipcode')
 
   iconUrl: (iconName) ->
-    'http://openweathermap.org/img/w/' + iconName + '.png'
+    "http://openweathermap.org/img/w/#{iconName}.png"
 
   showIcon: (iconName) ->
     return unless atom.config.get 'weather.showIcon'
@@ -47,10 +48,15 @@ class WeatherView extends HTMLElement
     @content.appendChild(img)
 
   weatherUrl: ->
-    'http://api.openweathermap.org/data/2.5/weather?zip=' + @zipcode() + ',us&units=imperial'
+    "http://api.openweathermap.org/data/2.5/weather?zip=#{@zipcode()},us&units=imperial"
 
   showWeather: (weather) ->
-    @content.innerText = Math.round(weather.main.temp) + 'F'
+    info = ["#{Math.round(weather.main.temp)}F"]
+
+    if atom.config.get 'weather.showHumidity'
+      info.push "#{Math.round(weather.main.humidity)}%"
+
+    @content.innerText = info.join ' '
     @showIcon(weather.weather[0].icon)
 
   fetchWeather: ->
