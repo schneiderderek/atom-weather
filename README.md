@@ -28,7 +28,7 @@ By default weather will show the sunrise time. To change this, check/uncheck the
 ### Show Sunset
 By default weather will show the sunset time. To change this, check/uncheck the option.
 
-### Show Sunset
+### Show Temp
 By default weather will show the current temperature. To change this, check/uncheck the option.
 
 ### Update Interval
