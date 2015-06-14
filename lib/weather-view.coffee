@@ -1,5 +1,27 @@
+WeatherData = require './weather-data'
+
 class WeatherView extends HTMLElement
-  configRerenderTriggers: ['zipcode', 'showIcon', 'showHumidity']
+  configRerenderTriggers: ['zipcode', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp', 'showSunrise', 'showSunset']
+  configResponseMappings:
+    showTemp:
+      suffix: 'F'
+      dataAttribute: 'temp'
+    showHumidity:
+      suffix: '%'
+      dataAttribute: 'humidity'
+    showLow:
+      suffix: 'F'
+      prefix: 'L'
+      dataAttribute: 'low'
+    showHigh:
+      suffix: 'F'
+      prefix: 'H'
+      dataAttribute: 'high'
+    showSunrise:
+      dataAttribute: 'sunrise'
+    showSunset:
+      dataAttribute: 'sunset'
+  data: null
   initialize: ->
     @classList.add('weather', 'inline-block')
 
@@ -8,13 +30,12 @@ class WeatherView extends HTMLElement
 
     @appendChild(@content)
 
+    @data = new WeatherData(@showWeather.bind(@))
+
     @showLoading()
 
-    @fetchWeather()
-    setInterval(@fetchWeather.bind(@), @updateInterval())
-
     for optionName in @configRerenderTriggers
-      atom.config.onDidChange "weather.#{optionName}", @fetchWeather.bind(@)
+      atom.config.onDidChange "weather.#{optionName}", @data.refresh.bind(@data)
 
   isVisible: ->
     @classList.contains('hidden')
@@ -25,57 +46,39 @@ class WeatherView extends HTMLElement
   hide: ->
     @classList.remove('hidden')
 
-  updateInterval: ->
-    atom.config.get('weather.updateInterval') * 60 * 1000
-
   showLoading: ->
-    @content.innerText = "Getting weather for: #{@zipcode()}"
+    @content.innerText = "Getting weather for: #{@data.zipcode()}"
 
   showError: (errorText) ->
     @content.innerText = "Cannot load weather: #{errorText}"
 
-  zipcode: ->
-    atom.config.get('weather.zipcode')
-
   iconUrl: (iconName) ->
     "http://openweathermap.org/img/w/#{iconName}.png"
 
-  showIcon: (iconName) ->
-    return unless atom.config.get 'weather.showIcon'
+  showIcon: ->
+    return unless atom.config.get('weather.showIcon') && @data.iconCode?
 
     img = document.createElement('img')
-    img.setAttribute('src', @iconUrl(iconName))
+    img.setAttribute('src', @iconUrl(@data.iconCode))
     @content.appendChild(img)
 
-  weatherUrl: ->
-    "http://api.openweathermap.org/data/2.5/weather?zip=#{@zipcode()},us&units=imperial"
+  formatString: (configName) ->
+    config = @configResponseMappings[configName]
+    data = @data[config.dataAttribute]
+    return '' unless data
+    "#{config.prefix || ''}#{data}#{config.suffix || ''}"
 
-  showWeather: (weather) ->
-    info = ["#{Math.round(weather.main.temp)}F"]
+  showWeather: () ->
+    @content.innerHTML = ''
 
-    if atom.config.get 'weather.showHumidity'
-      info.push "#{Math.round(weather.main.humidity)}%"
+    @showIcon()
+    info = []
 
-    @content.innerText = info.join ' '
-    @showIcon(weather.weather[0].icon)
+    for configName in Object.keys(@configResponseMappings)
+      if atom.config.get "weather.#{configName}"
+        info.push @formatString(configName)
 
-  fetchWeather: ->
-    console.info('Fetching weather')
-    request = new XMLHttpRequest()
-    request.open 'GET', @weatherUrl()
-    request.send()
-    view = @
-
-    request.onreadystatechange = ->
-      if request.readyState == 4 && request.status == 200
-        response = JSON.parse(request.responseText)
-
-        # The openweathermap API seems to always return a 200 HTTP status.
-        # Check the response to make sure it was actually successful.
-        if response.cod == 200
-          view.showWeather response
-        else
-          view.showError response.message
+    @content.appendChild document.createTextNode(info.join ' ')
 
 
 module.exports = document.registerElement('status-bar-weather',
