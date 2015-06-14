@@ -1,3 +1,10 @@
+## 0.7.0
+* Add sunrise
+* Add sunset
+* Add high
+* Add low
+* Refactor
+
 ## 0.6.0
 * Add show icon feature
 * Add show humidity feature
