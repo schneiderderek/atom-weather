@@ -35,7 +35,7 @@ class WeatherView extends HTMLElement
     @showLoading()
 
     for optionName in @configRerenderTriggers
-      atom.config.onDidChange "weather.#{optionName}", @data.refresh.bind(@data)
+      atom.config.onDidChange "weather.#{optionName}", @showWeather.bind(@)
 
   isVisible: ->
     @classList.contains('hidden')
@@ -49,8 +49,8 @@ class WeatherView extends HTMLElement
   showLoading: ->
     @content.innerText = "Getting weather for: #{@data.zipcode()}"
 
-  showError: (errorText) ->
-    @content.innerText = "Cannot load weather: #{errorText}"
+  showError: ->
+    @content.innerText = "Cannot load weather: #{@data.errorText}"
 
   iconUrl: (iconName) ->
     "http://openweathermap.org/img/w/#{iconName}.png"
@@ -68,7 +68,9 @@ class WeatherView extends HTMLElement
     return '' unless data
     "#{config.prefix || ''}#{data}#{config.suffix || ''}"
 
-  showWeather: () ->
+  showWeather: ->
+    return @showError() if @data.error
+
     @content.innerHTML = ''
 
     @showIcon()

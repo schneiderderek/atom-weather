@@ -8,6 +8,7 @@ class WeatherData
       urlFunctionName: 'forecastWeatherUrl'
       handlerFunctionName: 'handleForecastResponse'
   location: null
+  error: false
   constructor: (viewCallback) ->
     @viewCallback = viewCallback
 
@@ -28,7 +29,7 @@ class WeatherData
     "#{@zipcode()},us"
 
   currentWeatherUrl: ->
-    "http://api.openweathermap.org/data/2.5/weather?&zip=#{@apiZipcodeFormat()}&units=imperial"
+    "http://api.openweathermap.org/data/2.5/weather?zip=#{@apiZipcodeFormat()}&units=imperial"
 
   forecastWeatherUrl: ->
     lat = @location.lat
@@ -62,9 +63,14 @@ class WeatherData
 
     @viewCallback()
 
-  showError: (message) ->
-    console.error('Error')
+  handleApiError: (message) ->
+    @error = true
+    @errorText = message
+
+    console.error('Error fetching data from API')
     console.error(message)
+
+    @viewCallback()
 
   weatherApiCall: (options) ->
     console.log "Fetching weather using #{options.urlFunctionName}"
@@ -85,5 +91,8 @@ class WeatherData
         # Check the response to make sure it was actually successful.
         if response.cod == 200 || response.cod == '200' # Not a typo
           handler.bind(model)(response)
+          model.error = false
         else
-          model.showError response.message
+          model.handleApiError.bind(model)(response.message)
+      else if request.readyState == 4
+        model.handleApiError.bind(model)('API Error')
