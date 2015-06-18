@@ -1,3 +1,9 @@
+## 0.9.0
+* Added manual update feature in menu
+
+## 0.8.0
+* Improved handling of API errors
+
 ## 0.7.0
 * Add sunrise
 * Add sunset

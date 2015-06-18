@@ -46,6 +46,9 @@ class WeatherView extends HTMLElement
   hide: ->
     @classList.remove('hidden')
 
+  refresh: ->
+    @data.refresh()
+
   showLoading: ->
     @content.innerText = "Getting weather for: #{@data.zipcode()}"
 

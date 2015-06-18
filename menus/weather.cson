@@ -8,6 +8,10 @@
         {
           'label': 'Toggle'
           'command': 'weather:toggle'
+        },
+        {
+          'label': 'Refresh'
+          'command': 'weather:refresh'
         }
       ]
     ]

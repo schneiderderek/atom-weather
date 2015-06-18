@@ -44,6 +44,7 @@ module.exports = Weather =
 
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace', 'weather:toggle': => @toggle()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'weather:refresh': => @weatherView.refresh()
 
   deactivate: ->
     @subscriptions.dispose()

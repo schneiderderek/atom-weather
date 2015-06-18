@@ -37,6 +37,15 @@ By default weather will update the weather every 15 minutes. To change this, jus
 ### Zipcode
 By default weather uses the zipcode 43201. Enter in your zipcode into the text box and you're all set!
 
+## Menu Options
+To access the menu options click on the `Packages` option in the menubar, then `Weather`. There are currently two different options available in the package menu.
+
+### Toggle
+This activates and deactives the weather package.
+
+### Refresh
+This manually updates the weather.
+
 ## Weather API
 
 This package uses http://openweathermap.org/
