@@ -51,6 +51,7 @@ class WeatherData
     @iconCode = data.weather[0].icon
     @sunrise = @formatTime @parseUnixTimestamp(data.sys.sunrise)
     @sunset = @formatTime @parseUnixTimestamp(data.sys.sunset)
+    @pressure = Math.round(data.main.pressure)
 
     @weatherApiCall @apiCallTypes.forecast
 

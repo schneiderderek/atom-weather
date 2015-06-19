@@ -22,6 +22,9 @@ By default weather will show an icon associated with the current weather. To cha
 ### Show Low
 By default weather will show the low for the day. To change this, check/uncheck the option.
 
+### Show Pressure
+By default weather will show the current atmospheric pressure. To change this, check/uncheck the option.
+
 ### Show Sunrise
 By default weather will show the sunrise time. To change this, check/uncheck the option.
 

@@ -1,4 +1,7 @@
 ## 0.9.0
+* Added pressure
+
+## 0.9.0
 * Added manual update feature in menu
 
 ## 0.8.0
