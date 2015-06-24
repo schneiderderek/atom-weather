@@ -1,4 +1,7 @@
-## 0.9.0
+## 0.10.1
+* Better handling for bad API responses
+
+## 0.10.0
 * Added pressure
 
 ## 0.9.0
