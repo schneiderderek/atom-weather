@@ -68,10 +68,22 @@ class WeatherData
     @error = true
     @errorText = message
 
-    console.error('Error fetching data from API')
-    console.error(message)
+    console.error 'Error fetching data from API'
+    console.error message
 
     @viewCallback()
+
+  parseJSON: (string) ->
+    result = null
+
+    try
+      o = JSON.parse string
+      result = o if o && typeof o == 'object'
+    catch error
+      console.warn 'Error parsing JSON from API'
+      result = { message: 'Error parsing JSON from API' }
+
+    result
 
   weatherApiCall: (options) ->
     console.log "Fetching weather using #{options.urlFunctionName}"
@@ -86,11 +98,11 @@ class WeatherData
 
     request.onreadystatechange = ->
       if request.readyState == 4 && request.status == 200
-        response = JSON.parse(request.responseText)
+        response = model.parseJSON(request.responseText)
 
         # The openweathermap API seems to always return a 200 HTTP status.
         # Check the response to make sure it was actually successful.
-        if response.cod == 200 || response.cod == '200' # Not a typo
+        if response && (response.cod == 200 || response.cod == '200') # Not a typo
           handler.bind(model)(response)
           model.error = false
         else
