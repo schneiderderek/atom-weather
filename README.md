@@ -34,6 +34,12 @@ By default weather will show the sunset time. To change this, check/uncheck the 
 ### Show Temp
 By default weather will show the current temperature. To change this, check/uncheck the option.
 
+### Show Wind Direction
+By default weather will show the current wind direction. To change this, check/uncheck the option.
+
+### Show Wind Speed
+By default weather will show the current wind speed. To change this, check/uncheck the option.
+
 ### Update Interval
 By default weather will update the weather every 15 minutes. To change this, just enter the number of minutes you want weather to wait before updating.
 

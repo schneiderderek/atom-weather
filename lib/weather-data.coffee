@@ -1,3 +1,5 @@
+WindDirection = require './wind-direction'
+
 module.exports =
 class WeatherData
   apiCallTypes:
@@ -52,6 +54,8 @@ class WeatherData
     @sunrise = @formatTime @parseUnixTimestamp(data.sys.sunrise)
     @sunset = @formatTime @parseUnixTimestamp(data.sys.sunset)
     @pressure = Math.round(data.main.pressure)
+    @windSpeed = Math.round(data.wind.speed)
+    @windDirection = (new WindDirection(data.wind.deg)).cardinal
 
     @weatherApiCall @apiCallTypes.forecast
 

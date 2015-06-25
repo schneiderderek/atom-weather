@@ -1,3 +1,7 @@
+## 0.11.0
+* Add wind speed
+* Add wind direction
+
 ## 0.10.1
 * Better handling for bad API responses
 

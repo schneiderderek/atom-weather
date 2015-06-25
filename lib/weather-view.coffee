@@ -2,9 +2,9 @@ WeatherData = require './weather-data'
 
 class WeatherView extends HTMLElement
   configRerenderTriggers: [
-    'zipcode', 'showIcon', 'showHumidity', 'showHigh',
-    'showLow', 'showTemp', 'showSunrise', 'showSunset',
-    'showHumidity', 'showPressure']
+    'zipcode', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp',
+    'showSunrise', 'showSunset', 'showHumidity', 'showPressure', 'showWindSpeed',
+    'showWindDirection']
   configResponseMappings:
     showTemp:
       suffix: 'F'
@@ -27,6 +27,11 @@ class WeatherView extends HTMLElement
     showPressure:
       suffix: 'hPa'
       dataAttribute: 'pressure'
+    showWindSpeed:
+      dataAttribute: 'windSpeed'
+      suffix: 'MPH'
+    showWindDirection:
+      dataAttribute: 'windDirection'
   data: null
   initialize: ->
     @classList.add('weather', 'inline-block')
