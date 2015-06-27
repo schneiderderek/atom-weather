@@ -1,8 +1,9 @@
 # Weather
 
-Displays the temperature in the status bar of Atom.
+Displays the temperature and other weather related informtion in the status bar of Atom.
 
-![Screenshot](http://i.imgur.com/rOM0KX8.png)
+![Dark Theme Screenshot](http://i.imgur.com/cmFoXVa.png)
+![Light Theme Screenshot](http://i.imgur.com/bzbwZWZ.png)
 
 More features coming soon, feel free to put in requests or contribute!
 
