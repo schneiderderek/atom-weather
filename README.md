@@ -16,19 +16,19 @@ The following configuration options are available, shown in the order they appea
 
 | Name | Description | Default |
 | ------------- | ------------- |
-| Metric | Use metric units | off
-| Show High  | High temp for the day  | on
-| Show Humidity  | Current humidity | on
-| Show Icon | icon associated with current weather | on
-| Show Low | Low temp for the day | on
-| Show Pressure | Current atmospheric pressure | on
-| Show Sunrise | Sunrise time | on
-| Show Sunset | Sunset time | on
-| Show Temp | Current temp | on
-| Show Wind Direction | Current wind direction | on
-| Show Wind Speed | Current wind speed | on
-| Update Interval | Number of minutes between updates | 15 min.
-| Zipcode | Location zipcode | 43201
+| Metric | Use metric units | off |
+| Show High  | High temp for the day | on |
+| Show Humidity  | Current humidity | on |
+| Show Icon | icon associated with current weather | on |
+| Show Low | Low temp for the day | on |
+| Show Pressure | Current atmospheric pressure | on |
+| Show Sunrise | Sunrise time | on |
+| Show Sunset | Sunset time | on |
+| Show Temp | Current temp | on |
+| Show Wind Direction | Current wind direction | on |
+| Show Wind Speed | Current wind speed | on |
+| Update Interval | Number of minutes between updates | 15 min. |
+| Zipcode | Location zipcode | 43201 |
 
 ## Menu Options
 To access the menu options click on the `Packages` option in the menubar, then `Weather`. There are currently two different options available in the package menu.
