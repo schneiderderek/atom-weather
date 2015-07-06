@@ -41,6 +41,10 @@ module.exports = Weather =
     showWindDirection:
       type: 'boolean'
       default: true
+    metric:
+      type: 'boolean'
+      default: false
+
   consumeStatusBar: (statusBar) ->
     @statusBarTile = statusBar.addRightTile(item: @weatherView, priority: 100)
 

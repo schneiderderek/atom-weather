@@ -1,3 +1,6 @@
+## 0.12.0
+* Add support for metric units
+
 ## 0.11.0
 * Add wind speed
 * Add wind direction

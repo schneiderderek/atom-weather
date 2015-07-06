@@ -24,6 +24,11 @@ class WeatherData
   zipcode: ->
     atom.config.get('weather.zipcode')
 
+  units: ->
+    units = 'imperial'
+    units = 'metric' if atom.config.get 'weather.metric'
+    units
+
   updateInterval: ->
     atom.config.get('weather.updateInterval') * 60 * 1000
 
@@ -31,13 +36,13 @@ class WeatherData
     "#{@zipcode()},us"
 
   currentWeatherUrl: ->
-    "http://api.openweathermap.org/data/2.5/weather?zip=#{@apiZipcodeFormat()}&units=imperial"
+    "http://api.openweathermap.org/data/2.5/weather?zip=#{@apiZipcodeFormat()}&units=#{@units()}"
 
   forecastWeatherUrl: ->
     lat = @location.lat
     lon = @location.lon
     return null unless lat? && lon?
-    "http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{lat}&lon=#{lon}&units=imperial&cnt=1"
+    "http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{lat}&lon=#{lon}&units=#{@units()}&cnt=1"
 
   parseUnixTimestamp: (timestamp) ->
     new Date(timestamp * 1000)

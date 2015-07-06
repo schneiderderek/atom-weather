@@ -4,20 +4,26 @@ class WeatherView extends HTMLElement
   configRerenderTriggers: [
     'zipcode', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp',
     'showSunrise', 'showSunset', 'showHumidity', 'showPressure', 'showWindSpeed',
-    'showWindDirection']
+    'showWindDirection', 'metric']
   configResponseMappings:
     showTemp:
-      suffix: 'F'
+      unit:
+        metric: 'C'
+        imperial: 'F'
       dataAttribute: 'temp'
     showHumidity:
       suffix: '%'
       dataAttribute: 'humidity'
     showLow:
-      suffix: 'F'
+      unit:
+        metric: 'C'
+        imperial: 'F'
       prefix: 'L'
       dataAttribute: 'low'
     showHigh:
-      suffix: 'F'
+      unit:
+        metric: 'C'
+        imperial: 'F'
       prefix: 'H'
       dataAttribute: 'high'
     showSunrise:
@@ -29,7 +35,9 @@ class WeatherView extends HTMLElement
       dataAttribute: 'pressure'
     showWindSpeed:
       dataAttribute: 'windSpeed'
-      suffix: 'MPH'
+      unit:
+        metric: 'MPS'
+        imperial: 'MPH'
     showWindDirection:
       dataAttribute: 'windDirection'
   data: null
@@ -47,6 +55,8 @@ class WeatherView extends HTMLElement
 
     for optionName in @configRerenderTriggers
       atom.config.onDidChange "weather.#{optionName}", @showWeather.bind(@)
+
+    atom.config.onDidChange 'weather.metric', @refresh.bind(@)
 
   isVisible: ->
     @classList.contains('hidden')
@@ -80,7 +90,7 @@ class WeatherView extends HTMLElement
     config = @configResponseMappings[configName]
     data = @data[config.dataAttribute]
     return '' unless data
-    "#{config.prefix || ''}#{data}#{config.suffix || ''}"
+    "#{config.prefix || ''}#{data}#{config.unit?[@data.units()] || ''}#{config.suffix || ''}"
 
   showWeather: ->
     return @showError() if @data.error

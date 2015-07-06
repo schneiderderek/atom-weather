@@ -1,9 +1,10 @@
 # Weather
 
-Displays the temperature and other weather related informtion in the status bar of Atom.
+Displays the temperature and other weather related information in the status bar of Atom.
 
-![Dark Theme Screenshot](http://i.imgur.com/cmFoXVa.png)
-![Light Theme Screenshot](http://i.imgur.com/bzbwZWZ.png)
+![Screenshot of dark theme imperial units](http://i.imgur.com/0f0l2gL.png)
+![Screenshot of light theme imperial units](http://i.imgur.com/JCRQnV0.png)
+![Screenshot of dark theme metric units](http://i.imgur.com/yAd6Ngh.png)
 
 More features coming soon, feel free to put in requests or contribute!
 
@@ -11,41 +12,23 @@ More features coming soon, feel free to put in requests or contribute!
 
 Configuration for weather can be found by going to: settings > packages > weather and click on settings.
 
-### Show High
-By default weather will show the high for the day. To change this, check/uncheck the option.
+The following configuration options are available, shown in the order they appear (alphabetically):
 
-### Show Humidity
-By default weather will show the current humidity. To change this, check/uncheck the option.
-
-### Show Icon
-By default weather will show an icon associated with the current weather. To change this, check/uncheck the option.
-
-### Show Low
-By default weather will show the low for the day. To change this, check/uncheck the option.
-
-### Show Pressure
-By default weather will show the current atmospheric pressure. To change this, check/uncheck the option.
-
-### Show Sunrise
-By default weather will show the sunrise time. To change this, check/uncheck the option.
-
-### Show Sunset
-By default weather will show the sunset time. To change this, check/uncheck the option.
-
-### Show Temp
-By default weather will show the current temperature. To change this, check/uncheck the option.
-
-### Show Wind Direction
-By default weather will show the current wind direction. To change this, check/uncheck the option.
-
-### Show Wind Speed
-By default weather will show the current wind speed. To change this, check/uncheck the option.
-
-### Update Interval
-By default weather will update the weather every 15 minutes. To change this, just enter the number of minutes you want weather to wait before updating.
-
-### Zipcode
-By default weather uses the zipcode 43201. Enter in your zipcode into the text box and you're all set!
+| Name | Description | Default |
+| ------------- | ------------- |
+| Metric | Use metric units | off
+| Show High  | High temp for the day  | on
+| Show Humidity  | Current humidity | on
+| Show Icon | icon associated with current weather | on
+| Show Low | Low temp for the day | on
+| Show Pressure | Current atmospheric pressure | on
+| Show Sunrise | Sunrise time | on
+| Show Sunset | Sunset time | on
+| Show Temp | Current temp | on
+| Show Wind Direction | Current wind direction | on
+| Show Wind Speed | Current wind speed | on
+| Update Interval | Number of minutes between updates | 15 min.
+| Zipcode | Location zipcode | 43201
 
 ## Menu Options
 To access the menu options click on the `Packages` option in the menubar, then `Weather`. There are currently two different options available in the package menu.
