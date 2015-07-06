@@ -15,7 +15,7 @@ Configuration for weather can be found by going to: settings > packages > weathe
 The following configuration options are available, shown in the order they appear (alphabetically):
 
 | Name | Description | Default |
-| ------------- | ------------- |
+| ------------- | ------------- | ----------- |
 | Metric | Use metric units | off |
 | Show High  | High temp for the day | on |
 | Show Humidity  | Current humidity | on |
