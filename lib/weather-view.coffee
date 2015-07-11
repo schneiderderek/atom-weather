@@ -5,6 +5,7 @@ class WeatherView extends HTMLElement
     'units', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp',
     'showSunrise', 'showSunset', 'showHumidity', 'showPressure', 'showWindSpeed',
     'showWindDirection']
+  configRefreshTriggers: ['units', 'locationMethod']
   configResponseMappings:
     showTemp:
       unit:
@@ -56,7 +57,8 @@ class WeatherView extends HTMLElement
     for optionName in @configRerenderTriggers
       atom.config.onDidChange "weather.#{optionName}", @showWeather.bind(@)
 
-    atom.config.onDidChange "weather.locationMethod", @refresh.bind(@)
+    for optionName in @configRefreshTriggers
+      atom.config.onDidChange "weather.#{optionName}", @refresh.bind(@)
 
   isVisible: ->
     @classList.contains('hidden')
