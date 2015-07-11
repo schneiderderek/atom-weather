@@ -1,5 +1,7 @@
-## 0.13.1
+## 0.14.1
 * Fix issue with changing between metric and imperial units
+
+## 0.14.0
 
 ## 0.13.0
 * Add support for latitude and longitude location inputs
