@@ -16,9 +16,11 @@ The following configuration options are available, shown in the order they appea
 
 | Name | Description | Default |
 | ------------- | ------------- | ----------- |
-| Metric | Use metric units | off |
-| Show High  | High temp for the day | on |
-| Show Humidity  | Current humidity | on |
+| Latitude | Latitude (ignored if zipcode location method choosen) | 0 |
+| Location Method | Whether to use zipcode or lat/long | zipcode |
+| Longitude | Longitude (ignored if zipcode location method choosen) | 0 |
+| Show High | High temp for the day | on |
+| Show Humidity | Current humidity | on |
 | Show Icon | icon associated with current weather | on |
 | Show Low | Low temp for the day | on |
 | Show Pressure | Current atmospheric pressure | on |
@@ -27,8 +29,9 @@ The following configuration options are available, shown in the order they appea
 | Show Temp | Current temp | on |
 | Show Wind Direction | Current wind direction | on |
 | Show Wind Speed | Current wind speed | on |
+| Units | Unit measurement | imperial |
 | Update Interval | Number of minutes between updates | 15 min. |
-| Zipcode | Location zipcode | 43201 |
+| Zipcode | Location zipcode (ignored if lat/long location method choosen) | 43201 |
 
 ## Menu Options
 To access the menu options click on the `Packages` option in the menubar, then `Weather`. There are currently two different options available in the package menu.

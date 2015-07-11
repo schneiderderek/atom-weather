@@ -41,9 +41,20 @@ module.exports = Weather =
     showWindDirection:
       type: 'boolean'
       default: true
-    metric:
-      type: 'boolean'
-      default: false
+    units:
+      type: 'string'
+      default: 'imperial'
+      enum: ['imperial', 'metric']
+    locationMethod:
+      type: 'string'
+      default: 'zipcode'
+      enum: ['zipcode', 'latitude and longitude']
+    latitude:
+      type: 'number'
+      default: 0.0
+    longitude:
+      type: 'number'
+      default: 0.0
 
   consumeStatusBar: (statusBar) ->
     @statusBarTile = statusBar.addRightTile(item: @weatherView, priority: 100)

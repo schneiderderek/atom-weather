@@ -25,9 +25,7 @@ class WeatherData
     atom.config.get('weather.zipcode')
 
   units: ->
-    units = 'imperial'
-    units = 'metric' if atom.config.get 'weather.metric'
-    units
+    atom.config.get 'weather.units'
 
   updateInterval: ->
     atom.config.get('weather.updateInterval') * 60 * 1000
@@ -35,8 +33,23 @@ class WeatherData
   apiZipcodeFormat: ->
     "#{@zipcode()},us"
 
+  locationMethod: ->
+    atom.config.get 'weather.locationMethod'
+
+  longitude: ->
+    atom.config.get('weather.longitude')
+
+  latitude: ->
+    atom.config.get('weather.latitude')
+
   currentWeatherUrl: ->
-    "http://api.openweathermap.org/data/2.5/weather?zip=#{@apiZipcodeFormat()}&units=#{@units()}"
+
+    if @locationMethod() == 'zipcode'
+      location = "zip=#{@apiZipcodeFormat()}"
+    else
+      location = "lon=#{@longitude()}&lat=#{@latitude()}"
+
+    "http://api.openweathermap.org/data/2.5/weather?units=#{@units()}&#{location}"
 
   forecastWeatherUrl: ->
     lat = @location.lat

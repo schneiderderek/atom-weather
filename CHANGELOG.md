@@ -1,3 +1,8 @@
+## 0.13.0
+* Add support for latitude and longitude location inputs
+* Change how unit selection is handled
+* Change how location method is handled
+
 ## 0.12.0
 * Add support for metric units
 

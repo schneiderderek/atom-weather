@@ -2,9 +2,9 @@ WeatherData = require './weather-data'
 
 class WeatherView extends HTMLElement
   configRerenderTriggers: [
-    'zipcode', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp',
+    'units', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp',
     'showSunrise', 'showSunset', 'showHumidity', 'showPressure', 'showWindSpeed',
-    'showWindDirection', 'metric']
+    'showWindDirection']
   configResponseMappings:
     showTemp:
       unit:
@@ -56,7 +56,7 @@ class WeatherView extends HTMLElement
     for optionName in @configRerenderTriggers
       atom.config.onDidChange "weather.#{optionName}", @showWeather.bind(@)
 
-    atom.config.onDidChange 'weather.metric', @refresh.bind(@)
+    atom.config.onDidChange "weather.locationMethod", @refresh.bind(@)
 
   isVisible: ->
     @classList.contains('hidden')
