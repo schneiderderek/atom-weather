@@ -5,7 +5,7 @@ class WeatherView extends HTMLElement
     'units', 'showIcon', 'showHumidity', 'showHigh', 'showLow', 'showTemp',
     'showSunrise', 'showSunset', 'showHumidity', 'showPressure', 'showWindSpeed',
     'showWindDirection']
-  configRefreshTriggers: ['units', 'locationMethod']
+  configRefreshTriggers: ['units', 'locationMethod', 'apikey']
   configResponseMappings:
     showTemp:
       unit:
