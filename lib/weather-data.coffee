@@ -42,6 +42,9 @@ class WeatherData
   latitude: ->
     atom.config.get('weather.latitude')
 
+  apikey: ->
+    atom.config.get('weather.apikey')
+
   currentWeatherUrl: ->
 
     if @locationMethod() == 'zipcode'
@@ -49,13 +52,13 @@ class WeatherData
     else
       location = "lon=#{@longitude()}&lat=#{@latitude()}"
 
-    "http://api.openweathermap.org/data/2.5/weather?units=#{@units()}&#{location}"
+    "http://api.openweathermap.org/data/2.5/weather?units=#{@units()}&#{location}&APPID=#{@apikey()}"
 
   forecastWeatherUrl: ->
     lat = @location.lat
     lon = @location.lon
     return null unless lat? && lon?
-    "http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{lat}&lon=#{lon}&units=#{@units()}&cnt=1"
+    "http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{lat}&lon=#{lon}&units=#{@units()}&cnt=1&APPID=#{@apikey()}"
 
   parseUnixTimestamp: (timestamp) ->
     new Date(timestamp * 1000)

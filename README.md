@@ -8,6 +8,13 @@ Displays the temperature and other weather related information in the status bar
 
 More features coming soon, feel free to put in requests or contribute!
 
+## Api Key
+
+Registration for a free api key at [openweathermap.org](http://openweathermap.org/appid) is required. Click the "Sign Up" button and then copy your unique api key into your atom-weather configuration.
+
+If you are getting the error message "cannot load weather", check that the api key entered in configuration matches the one you were provided by openweathermap.org.
+
+
 ## Configuration
 
 Configuration for weather can be found by going to: settings > packages > weather and click on settings.
@@ -16,6 +23,7 @@ The following configuration options are available, shown in the order they appea
 
 | Name | Description | Default |
 | ------------- | ------------- | ----------- |
+| Api Key | Obtain from http://openweathermap.org/appid. | |
 | Latitude | Latitude (ignored if zipcode location method choosen) | 0 |
 | Location Method | Whether to use zipcode or lat/long | zipcode |
 | Longitude | Longitude (ignored if zipcode location method choosen) | 0 |

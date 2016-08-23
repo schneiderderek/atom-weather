@@ -55,6 +55,9 @@ module.exports = Weather =
     longitude:
       type: 'number'
       default: 0.0
+    apikey:
+      type: 'string'
+      default: "http://openweathermap.org/appid"
 
   consumeStatusBar: (statusBar) ->
     @statusBarTile = statusBar.addRightTile(item: @weatherView, priority: 100)
